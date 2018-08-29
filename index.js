@@ -210,7 +210,7 @@ instance.prototype.action = function(action) {
 		case 'qlGoCue':
 
 			var arg = {
-				type: "f",
+				type: "s",
 				value: opt.qlId + '.' + opt.qId
 			};
 			cmd = '/hog/playback/go/0';
@@ -218,7 +218,7 @@ instance.prototype.action = function(action) {
 
 		case 'qlGo':
 			var arg = {
-				type: "i",
+				type: "s",
 				value: opt.qlId
 			};
 			cmd = '/hog/playback/go/0';
@@ -226,7 +226,7 @@ instance.prototype.action = function(action) {
 
 		case 'qlHalt':
 			var arg = {
-				type: "i",
+				type: "s",
 				value: opt.qlId
 			};
 			cmd = '/hog/playback/go/0';
@@ -234,7 +234,7 @@ instance.prototype.action = function(action) {
 
 		case 'qlResume':
 			var arg = {
-				type: "i",
+				type: "s",
 				value: opt.qlId
 			};
 			cmd = '/hog/playback/go/0';
@@ -242,7 +242,7 @@ instance.prototype.action = function(action) {
 
 		case 'qlRelease':
 			var arg = {
-				type: "i",
+				type: "s",
 				value: opt.qlId
 			};
 			cmd = '/hog/playback/go/0';
@@ -250,7 +250,7 @@ instance.prototype.action = function(action) {
 
 		case 'go':
 			var arg = {
-				type: "i",
+				type: "s",
 				value: opt.num
 			};
 			cmd = '/hog/playback/go/' + opt.type;
@@ -258,7 +258,7 @@ instance.prototype.action = function(action) {
 
 		case 'halt':
 			var arg = {
-				type: "i",
+				type: "s",
 				value: opt.num
 			};
 			cmd = '/hog/playback/go/' + opt.type;
@@ -266,7 +266,7 @@ instance.prototype.action = function(action) {
 
 		case 'release':
 			var arg = {
-				type: "i",
+				type: "s",
 				value: opt.num
 			};
 			cmd = '/hog/playback/go/' + opt.type;
