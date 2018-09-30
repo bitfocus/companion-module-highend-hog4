@@ -282,11 +282,5 @@ instance.prototype.action = function(action) {
 
 };
 
-instance.module_info = {
-	label: 'High End Systems Hog 4',
-	id: 'highend-hog4',
-	version: '0.0.1'
-};
-
 instance_skel.extendedBy(instance);
 exports = module.exports = instance;
