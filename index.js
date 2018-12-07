@@ -229,7 +229,7 @@ instance.prototype.action = function(action) {
 				type: "s",
 				value: opt.qlId
 			};
-			cmd = '/hog/playback/go/0';
+			cmd = '/hog/playback/halt/0';
 		break;
 
 		case 'qlResume':
@@ -237,7 +237,7 @@ instance.prototype.action = function(action) {
 				type: "s",
 				value: opt.qlId
 			};
-			cmd = '/hog/playback/go/0';
+			cmd = '/hog/playback/resume/0';
 		break;
 
 		case 'qlRelease':
@@ -245,7 +245,7 @@ instance.prototype.action = function(action) {
 				type: "s",
 				value: opt.qlId
 			};
-			cmd = '/hog/playback/go/0';
+			cmd = '/hog/playback/release/0';
 		break;
 
 		case 'go':
@@ -261,7 +261,7 @@ instance.prototype.action = function(action) {
 				type: "s",
 				value: opt.num
 			};
-			cmd = '/hog/playback/go/' + opt.type;
+			cmd = '/hog/playback/halt/' + opt.type;
 		break;
 
 		case 'release':
@@ -269,7 +269,7 @@ instance.prototype.action = function(action) {
 				type: "s",
 				value: opt.num
 			};
-			cmd = '/hog/playback/go/' + opt.type;
+			cmd = '/hog/playback/release/' + opt.type;
 		break;
 
 }
