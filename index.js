@@ -129,7 +129,7 @@ instance.prototype.actions = function(system) {
 				{
 					type:    'textinput',
 					label:   'Cuelist',
-					id:      'pbId',
+					id:      'qlId',
 					default: '1',
 					regex:   self.REGEX_NUMBER
 				}
