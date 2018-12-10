@@ -196,6 +196,159 @@ instance.prototype.actions = function(system) {
 				}
 			]
 		},
+
+		'masterKey':     {
+			label:     'Master Key Press',
+			options: [
+				{
+					type:    'textinput',
+					label:   'Master Number (1-90)',
+					id:      'mId',
+					default: '1',
+					regex:   self.REGEX_NUMBER //modify to only accept 1-90 in the future
+				},
+				{
+					type:    'dropdown',
+					label:   'Key',
+					id:      'type',
+					choices: [
+						{ id: 'choose', label: 'Choose' },
+						{ id: 'go', label: 'Go' },
+						{ id: 'pause', label: 'Pause' },
+						{ id: 'goback', label: 'Back' },
+						{ id: 'flash', label: 'Flash' }
+					],
+					default: 'go'
+				},
+				{
+					type:    'dropdown',
+					label:   'Action',
+					id:      'action',
+					choices: [ { id: '1', label: 'Button Down' }, { id: '0', label: 'Button Up' } ],
+					default: '1'
+				}
+			]
+		},
+
+		'masterFader':     {
+			label:     'Master Fader Level',
+			options: [
+				{
+					type:    'textinput',
+					label:   'Master Number (0 = GM, 1-90)',
+					id:      'mId',
+					default: '1',
+					regex:   self.REGEX_NUMBER //modify to only accept 0-90 in the future
+				},
+				{
+					type:    'textinput',
+					label:   'Fader Level (0-255)',
+					id:      'level',
+					default: '255',
+					regex:   self.REGEX_NUMBER //modify to only accept 0-255 in the future
+				}
+			]
+		},
+
+		'hardwareKey':     {
+			label:     'Hardware Key Press',
+			options: [
+				{
+					type:    'dropdown',
+					label:   'Key',
+					id:      'type',
+					choices: [
+						{ id: 'pig', label: 'Pig' },
+						{ id: 'zero', label: '0' },
+						{ id: 'one', label: '1' },
+						{ id: 'two', label: '2' },
+						{ id: 'three', label: '3' },
+						{ id: 'four', label: '4' },
+						{ id: 'five', label: '5' },
+						{ id: 'six', label: '6' },
+						{ id: 'seven', label: '7' },
+						{ id: 'eight', label: '8' },
+						{ id: 'nine', label: '9' },
+						{ id: 'up', label: 'Up' },
+						{ id: 'down', label: 'Down' },
+						{ id: 'left', label: 'Left' },
+						{ id: 'right', label: 'Right' },
+						{ id: 'at', label: '@' },
+						{ id: 'minus', label: '-' },
+						{ id: 'plus', label: '+' },
+						{ id: 'slash', label: '/' },
+						{ id: 'backspace', label: 'Backspace' },
+						{ id: 'maingo', label: 'Main Play' },
+						{ id: 'mainhalt', label: 'Main Halt' },
+						{ id: 'mainchoose', label: 'Center Choose' },
+						{ id: 'skipfwd', label: 'Skip Forward' },
+						{ id: 'skipback', label: 'Skip Back' }
+					],
+					default: 'pig'
+				},
+				{
+					type:    'dropdown',
+					label:   'Action',
+					id:      'action',
+					choices: [ { id: '1', label: 'Button Down' }, { id: '0', label: 'Button Up' } ],
+					default: '1'
+				}
+			]
+		},
+		
+		'hKey':     {
+			label:     'H Key Press',
+			options: [
+				{
+					type:    'textinput',
+					label:   'H Key Number',
+					id:      'hId',
+					default: '1',
+					regex:   self.REGEX_NUMBER
+				},
+				{
+					type:    'dropdown',
+					label:   'Action',
+					id:      'action',
+					choices: [ { id: '1', label: 'Button Down' }, { id: '0', label: 'Button Up' } ],
+					default: '1'
+				}
+			]
+		},
+		
+		'midiNote':     {
+			label:     'MIDI Note',
+			options: [
+				{
+					type:    'dropdown',
+					label:   'Action',
+					id:      'action',
+					choices: [ { id: 'on', label: 'Note On' }, { id: 'off', label: 'Note Off' } ],
+					default: '1'
+				},
+				{
+					type:    'textinput',
+					label:   'Channel #',
+					id:      'cId',
+					default: '1',
+					regex:   self.REGEX_NUMBER
+				},
+				{
+					type:    'textinput',
+					label:   'Note #',
+					id:      'nId',
+					default: '1',
+					regex:   self.REGEX_NUMBER
+				},
+				{
+					type:    'textinput',
+					label:   'Velocity (0 is treated as a Note Off)',
+					id:      'velocity',
+					default: '255',
+					regex:   self.REGEX_NUMBER
+				}
+			]
+		},		
 	});
 }
 
@@ -272,7 +425,51 @@ instance.prototype.action = function(action) {
 			cmd = '/hog/playback/release/' + opt.type;
 		break;
 
-}
+		case 'masterKey':
+
+			var arg = {
+				type: "s",
+				value: opt.action
+			};
+			cmd = '/hog/playback/'+ opt.type +'/'+ opt.mId;
+		break;
+
+		case 'masterFader':
+
+			var arg = {
+				type: "s",
+				value: opt.level
+			};
+			cmd = '/hog/hardware/fader/' + opt.mId;
+		break;
+
+		case 'hardwareKey':
+
+			var arg = {
+				type: "s",
+				value: opt.action
+			};
+			cmd = '/hog/hardware/' + opt.type;
+		break;
+
+		case 'hKey':
+
+			var arg = {
+				type: "s",
+				value: opt.action
+			};
+			cmd = '/hog/hardware/h'+ opt.hId;
+		break;
+
+		case 'midiNote':
+
+			var arg = {
+				type: "s",
+				value: opt.velocity
+			};
+			cmd = '/hog/midi/'+ opt.action +'/'+ opt.cId +'/'+ opt.nId;
+		break;
+	}
 
 	if (cmd != undefined) {
 		debug(cmd,arg);
