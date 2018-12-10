@@ -431,7 +431,7 @@ instance.prototype.action = function(action) {
 				type: "s",
 				value: opt.action
 			};
-			cmd = '/hog/playback/'+ opt.type +'/'+ opt.mId;
+			cmd = '/hog/hardware/'+ opt.type +'/'+ opt.mId;
 		break;
 
 		case 'masterFader':
