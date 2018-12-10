@@ -259,6 +259,7 @@ instance.prototype.actions = function(system) {
 					id:      'type',
 					choices: [
 						{ id: 'pig', label: 'Pig' },
+						{ id: 'period', label: '.' },
 						{ id: 'zero', label: '0' },
 						{ id: 'one', label: '1' },
 						{ id: 'two', label: '2' },
