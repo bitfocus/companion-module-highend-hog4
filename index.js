@@ -59,6 +59,57 @@ instance.prototype.destroy = function() {
 	debug("destory", self.id);;
 };
 
+instance.prototype.CHOICES_SCENEMACRO = [
+	{ id: '1', label: 'Scene' }, 
+	{ id: '2', label: 'Macro' }
+];
+
+instance.prototype.CHOICES_UPDOWN = [
+	{ id: '1', label: 'Button Down' },
+	{ id: '0', label: 'Button Up' }
+];
+
+instance.prototype.CHOICES_HARDWAREKEY = [
+	{ id: 'pig', label: 'Pig' },
+	{ id: 'period', label: '.' },
+	{ id: 'zero', label: '0' },
+	{ id: 'one', label: '1' },
+	{ id: 'two', label: '2' },
+	{ id: 'three', label: '3' },
+	{ id: 'four', label: '4' },
+	{ id: 'five', label: '5' },
+	{ id: 'six', label: '6' },
+	{ id: 'seven', label: '7' },
+	{ id: 'eight', label: '8' },
+	{ id: 'nine', label: '9' },
+	{ id: 'up', label: 'Up' },
+	{ id: 'down', label: 'Down' },
+	{ id: 'left', label: 'Left' },
+	{ id: 'right', label: 'Right' },
+	{ id: 'at', label: '@' },
+	{ id: 'minus', label: '-' },
+	{ id: 'plus', label: '+' },
+	{ id: 'slash', label: '/' },
+	{ id: 'backspace', label: 'Backspace' },
+	{ id: 'maingo', label: 'Main Play' },
+	{ id: 'mainhalt', label: 'Main Halt' },
+	{ id: 'mainchoose', label: 'Center Choose' },
+	{ id: 'skipfwd', label: 'Skip Forward' },
+	{ id: 'skipback', label: 'Skip Back' }
+];
+
+instance.prototype.CHOICES_MASTERKEY = [
+	{ id: 'choose', label: 'Choose' },
+	{ id: 'go', label: 'Go' },
+	{ id: 'pause', label: 'Pause' },
+	{ id: 'goback', label: 'Back' },
+	{ id: 'flash', label: 'Flash' }
+];
+
+instance.prototype.CHOICES_NOTESTATE = [
+	{ id: 'on', label: 'Note On' },
+	{ id: 'off', label: 'Note Off' }
+];
 
 instance.prototype.actions = function(system) {
 	var self = this;
@@ -143,7 +194,7 @@ instance.prototype.actions = function(system) {
 					type:    'dropdown',
 					label:   'Scene / Macro',
 					id:      'type',
-					choices: [ { id: '1', label: 'Scene' }, { id: '2', label: 'Macro' } ],
+					choices: self.CHOICES_SCENEMACRO,
 					default: '1'
 
 				},
@@ -164,7 +215,7 @@ instance.prototype.actions = function(system) {
 					type:    'dropdown',
 					label:   'Scene / Macro',
 					id:      'type',
-					choices: [ { id: '1', label: 'Scene' }, { id: '2', label: 'Macro' } ],
+					choices: self.CHOICES_SCENEMACRO,
 					default: '1'
 				},
 				{
@@ -184,7 +235,7 @@ instance.prototype.actions = function(system) {
 					type:    'dropdown',
 					label:   'Scene / Macro',
 					id:      'type',
-					choices: [ { id: '1', label: 'Scene' }, { id: '2', label: 'Macro' } ],
+					choices: self.CHOICES_SCENEMACRO,
 					default: '1'
 				},
 				{
@@ -205,26 +256,20 @@ instance.prototype.actions = function(system) {
 					label:   'Master Number (1-90)',
 					id:      'mId',
 					default: '1',
-					regex:   self.REGEX_NUMBER //modify to only accept 1-90 in the future
+					regex:   '/^([0]?[1-9]|[1-8][0-9]|90)$/'
 				},
 				{
 					type:    'dropdown',
 					label:   'Key',
 					id:      'type',
-					choices: [
-						{ id: 'choose', label: 'Choose' },
-						{ id: 'go', label: 'Go' },
-						{ id: 'pause', label: 'Pause' },
-						{ id: 'goback', label: 'Back' },
-						{ id: 'flash', label: 'Flash' }
-					],
+					choices: self.CHOICES_MASTERKEY,
 					default: 'go'
 				},
 				{
 					type:    'dropdown',
 					label:   'Action',
 					id:      'action',
-					choices: [ { id: '1', label: 'Button Down' }, { id: '0', label: 'Button Up' } ],
+					choices: self.CHOICES_UPDOWN,
 					default: '1'
 				}
 			]
@@ -238,14 +283,14 @@ instance.prototype.actions = function(system) {
 					label:   'Master Number (0 = GM, 1-90)',
 					id:      'mId',
 					default: '1',
-					regex:   self.REGEX_NUMBER //modify to only accept 0-90 in the future
+					regex:   '/^([0]?[0-9]|[1-8][0-9]|90)$/'
 				},
 				{
 					type:    'textinput',
 					label:   'Fader Level (0-255)',
 					id:      'level',
 					default: '255',
-					regex:   self.REGEX_NUMBER //modify to only accept 0-255 in the future
+					regex:   '/^([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])$/'
 				}
 			]
 		},
@@ -257,41 +302,14 @@ instance.prototype.actions = function(system) {
 					type:    'dropdown',
 					label:   'Key',
 					id:      'type',
-					choices: [
-						{ id: 'pig', label: 'Pig' },
-						{ id: 'period', label: '.' },
-						{ id: 'zero', label: '0' },
-						{ id: 'one', label: '1' },
-						{ id: 'two', label: '2' },
-						{ id: 'three', label: '3' },
-						{ id: 'four', label: '4' },
-						{ id: 'five', label: '5' },
-						{ id: 'six', label: '6' },
-						{ id: 'seven', label: '7' },
-						{ id: 'eight', label: '8' },
-						{ id: 'nine', label: '9' },
-						{ id: 'up', label: 'Up' },
-						{ id: 'down', label: 'Down' },
-						{ id: 'left', label: 'Left' },
-						{ id: 'right', label: 'Right' },
-						{ id: 'at', label: '@' },
-						{ id: 'minus', label: '-' },
-						{ id: 'plus', label: '+' },
-						{ id: 'slash', label: '/' },
-						{ id: 'backspace', label: 'Backspace' },
-						{ id: 'maingo', label: 'Main Play' },
-						{ id: 'mainhalt', label: 'Main Halt' },
-						{ id: 'mainchoose', label: 'Center Choose' },
-						{ id: 'skipfwd', label: 'Skip Forward' },
-						{ id: 'skipback', label: 'Skip Back' }
-					],
+					choices: self.CHOICES_HARDWAREKEY,
 					default: 'pig'
 				},
 				{
 					type:    'dropdown',
 					label:   'Action',
 					id:      'action',
-					choices: [ { id: '1', label: 'Button Down' }, { id: '0', label: 'Button Up' } ],
+					choices: self.CHOICES_UPDOWN,
 					default: '1'
 				}
 			]
@@ -311,7 +329,7 @@ instance.prototype.actions = function(system) {
 					type:    'dropdown',
 					label:   'Action',
 					id:      'action',
-					choices: [ { id: '1', label: 'Button Down' }, { id: '0', label: 'Button Up' } ],
+					choices: self.CHOICES_UPDOWN,
 					default: '1'
 				}
 			]
@@ -324,7 +342,7 @@ instance.prototype.actions = function(system) {
 					type:    'dropdown',
 					label:   'Action',
 					id:      'action',
-					choices: [ { id: 'on', label: 'Note On' }, { id: 'off', label: 'Note Off' } ],
+					choices: self.CHOICES_NOTESTATE,
 					default: '1'
 				},
 				{
@@ -332,21 +350,21 @@ instance.prototype.actions = function(system) {
 					label:   'Channel #',
 					id:      'cId',
 					default: '1',
-					regex:   self.REGEX_NUMBER
+					regex:   '/^([0]?[0-9]|1[0-6])$/' //0-16, not sure yet if 0-15 or 1-16
 				},
 				{
 					type:    'textinput',
 					label:   'Note #',
 					id:      'nId',
 					default: '1',
-					regex:   self.REGEX_NUMBER
+					regex:   '/^([0]?[0-9]?[0-9]|1[0-1][0-9]|12[0-8])$/' //0-128, not sure yet if 0-127 or 1-128
 				},
 				{
 					type:    'textinput',
 					label:   'Velocity (0 is treated as a Note Off)',
 					id:      'velocity',
-					default: '255',
-					regex:   self.REGEX_NUMBER
+					default: '127',
+					regex:   '/^([0]?[0-9]?[0-9]|1[0-1][0-9]|12[0-8])$/' //0-128, not sure yet if 0-127 or 1-128
 				}
 			]
 		},		
