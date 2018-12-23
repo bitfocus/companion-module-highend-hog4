@@ -277,6 +277,67 @@ instance.prototype.init_presets = function () {
 		});
 	}
 
+	presets.push({
+		category: 'Grand Master',
+		label: 'GM @ 0%',
+		bank: {
+			style: 'text',
+			text: 'GM @ 0%',
+			size: '18',
+			color: self.rgb(255,255,255),
+			bgcolor: self.rgb(0,0,0)
+		},
+		actions: [
+			{
+				action: 'masterFader',
+				options: {
+					mId: '0',
+					level: '0'
+				}
+			}
+		]
+	});
+	presets.push({
+		category: 'Grand Master',
+		label: 'GM @ 50%',
+		bank: {
+			style: 'text',
+			text: 'GM @ 50%',
+			size: '18',
+			color: self.rgb(255,255,255),
+			bgcolor: self.rgb(0,0,0)
+		},
+		actions: [
+			{
+				action: 'masterFader',
+				options: {
+					mId: '0',
+					level: '127'
+				}
+			}
+		]
+	});
+	presets.push({
+		category: 'Grand Master',
+		label: 'GM @ 100%',
+		bank: {
+			style: 'text',
+			text: 'GM @ 100%',
+			size: '18',
+			color: self.rgb(255,255,255),
+			bgcolor: self.rgb(0,0,0)
+		},
+		actions: [
+			{
+				action: 'masterFader',
+				options: {
+					mId: '0',
+					level: '255'
+				}
+			}
+		]
+	});
+
 	self.setPresetDefinitions(presets);
 }
 
