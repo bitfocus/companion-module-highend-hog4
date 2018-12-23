@@ -124,7 +124,7 @@ instance.prototype.init_presets = function () {
 				bank: {
 					style: 'text',
 					text: self.CHOICES_MASTERKEY[key].label + ' Master ' + master,
-					size: '18',
+					size: '14',
 					color: self.rgb(255,255,255),
 					bgcolor: self.rgb(0,0,0)
 				},
@@ -153,11 +153,11 @@ instance.prototype.init_presets = function () {
 
 		presets.push({
 			category: 'Master ' + master,
-			label: 'Master 1 @ 0%',
+			label: 'Master ' + master + ' @ 0%',
 			bank: {
 				style: 'text',
-				text: 'Master 1 @ 0%',
-				size: '18',
+				text: 'Master ' + master + ' @ 0%',
+				size: '14',
 				color: self.rgb(255,255,255),
 				bgcolor: self.rgb(0,0,0)
 			},
@@ -173,11 +173,11 @@ instance.prototype.init_presets = function () {
 		});
 		presets.push({
 			category: 'Master ' + master,
-			label: 'Master 1 @ 50%',
+			label: 'Master ' + master + ' @ 50%',
 			bank: {
 				style: 'text',
-				text: 'Master 1 @ 50%',
-				size: '18',
+				text: 'Master ' + master + ' @ 50%',
+				size: '14',
 				color: self.rgb(255,255,255),
 				bgcolor: self.rgb(0,0,0)
 			},
@@ -193,11 +193,11 @@ instance.prototype.init_presets = function () {
 		});
 		presets.push({
 			category: 'Master ' + master,
-			label: 'Master 1 @ 100%',
+			label: 'Master ' + master + ' @ 100%',
 			bank: {
 				style: 'text',
-				text: 'Master 1 @ 100%',
-				size: '18',
+				text: 'Master ' + master + ' @ 100%',
+				size: '14',
 				color: self.rgb(255,255,255),
 				bgcolor: self.rgb(0,0,0)
 			},
