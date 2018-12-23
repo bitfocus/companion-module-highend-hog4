@@ -20,6 +20,7 @@ instance.prototype.updateConfig = function(config) {
 instance.prototype.init = function() {
 	var self = this;
 	self.status(self.STATE_OK); // status ok!
+	self.init_presets();
 	debug = self.debug;
 	log = self.log;
 };
@@ -33,7 +34,7 @@ instance.prototype.config_fields = function () {
 			id: 'info',
 			width: 12,
 			label: 'Information',
-			value: 'You must enable OSC recive on the Hog 4 console and set a port '
+			value: 'You must enable \'OSC In\' on the Hog 4 console and set a port'
 		},
 		{
 			type: 'textinput',
@@ -110,6 +111,162 @@ instance.prototype.CHOICES_NOTESTATE = [
 	{ id: 'on', label: 'Note On' },
 	{ id: 'off', label: 'Note Off' }
 ];
+
+instance.prototype.init_presets = function () {
+	var self = this;
+	var presets = [];
+
+	for (var master = 1; master < 20; master++) {
+		for (var key in self.CHOICES_MASTERKEY) {
+			presets.push({
+				category: 'Master ' + master,
+				label: self.CHOICES_MASTERKEY[key].label + 'Master 1',
+				bank: {
+					style: 'text',
+					text: self.CHOICES_MASTERKEY[key].label + 'Master 1',
+					size: '18'
+				},
+				actions: [
+					{
+						action: 'masterKey',
+						options: {
+							type: self.CHOICES_MASTERKEY[key].id,
+							mId: master,
+							action: '1'
+						}
+					}
+				],
+				release_actions: [
+					{
+						action: 'masterKey',
+						options: {
+							type: self.CHOICES_MASTERKEY[key].id,
+							mId: master,
+							action: '0'
+						}
+					}
+				]
+			});
+		}
+
+		presets.push({
+			category: 'Master ' + master,
+			label: 'Master 1 @ 0%',
+			bank: {
+				style: 'text',
+				text: 'Master 1 @ 0%',
+				size: '18'
+			},
+			actions: [
+				{
+					action: 'masterFader',
+					options: {
+						mId: master,
+						level: '0'
+					}
+				}
+			]
+		});
+		presets.push({
+			category: 'Master ' + master,
+			label: 'Master 1 @ 50%',
+			bank: {
+				style: 'text',
+				text: 'Master 1 @ 50%',
+				size: '18'
+			},
+			actions: [
+				{
+					action: 'masterFader',
+					options: {
+						mId: master,
+						level: '127'
+					}
+				}
+			]
+		});
+		presets.push({
+			category: 'Master ' + master,
+			label: 'Master 1 @ 100%',
+			bank: {
+				style: 'text',
+				text: 'Master 1 @ 100%',
+				size: '18'
+			},
+			actions: [
+				{
+					action: 'masterFader',
+					options: {
+						mId: master,
+						level: '255'
+					}
+				}
+			]
+		});
+	}
+
+	for (var key in self.CHOICES_HARDWAREKEY) {
+		presets.push({
+			category: 'Hardware Keys',
+			label: self.CHOICES_HARDWAREKEY[key].label,
+			bank: {
+				style: 'text',
+				text: self.CHOICES_HARDWAREKEY[key].label,
+				size: '18'
+			},
+			actions: [
+				{
+					action: 'hardwareKey',
+					options: {
+						type: self.CHOICES_HARDWAREKEY[key].id,
+						action: '1'
+					}
+				}
+			],
+			release_actions: [
+				{
+					action: 'hardwareKey',
+					options: {
+						type: self.CHOICES_HARDWAREKEY[key].id,
+						action: '0'
+					}
+				}
+			]
+		});
+	}
+
+	for (var hKey = 1; hKey < 20; hKey++) {
+		presets.push({
+			category: 'H Keys',
+			label: 'H Key ' + hKey,
+			bank: {
+				style: 'text',
+				text: 'H Key ' + hKey,
+				size: '18'
+			},
+			actions: [
+				{
+					action: 'hardwareKey',
+					options: {
+						hId: hKey,
+						action: '1'
+					}
+				}
+			],
+			release_actions: [
+				{
+					action: 'hardwareKey',
+					options: {
+						hId: hKey,
+						action: '0'
+					}
+				}
+			]
+		});
+	}
+
+	self.setPresetDefinitions(presets);
+}
 
 instance.prototype.actions = function(system) {
 	var self = this;
@@ -196,7 +353,6 @@ instance.prototype.actions = function(system) {
 					id:      'type',
 					choices: self.CHOICES_SCENEMACRO,
 					default: '1'
-
 				},
 				{
 					type:    'textinput',
@@ -314,7 +470,7 @@ instance.prototype.actions = function(system) {
 				}
 			]
 		},
-		
+
 		'hKey':     {
 			label:     'H Key Press',
 			options: [
@@ -334,7 +490,7 @@ instance.prototype.actions = function(system) {
 				}
 			]
 		},
-		
+
 		'midiNote':     {
 			label:     'MIDI Note',
 			options: [
@@ -364,10 +520,10 @@ instance.prototype.actions = function(system) {
 					label:   'Velocity (0 is treated as a Note Off)',
 					id:      'velocity',
 					default: '127',
-					regex:   '/^([0]?[0-9]?[0-9]|1[0-1][0-9]|12[0-8])$/' //0-128, not sure yet if 0-127 or 1-128
+					regex:   '/^([0]?[0-9]?[0-9]|1[0-1][0-9]|12[0-7])$/'
 				}
 			]
-		},		
+		},
 	});
 }
 
@@ -493,7 +649,6 @@ instance.prototype.action = function(action) {
 	if (cmd != undefined) {
 		debug(cmd,arg);
 		self.system.emit('osc_send', self.config.host, self.config.port, cmd, [arg]);
-
 	}
 
 };
