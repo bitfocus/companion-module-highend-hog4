@@ -116,15 +116,17 @@ instance.prototype.init_presets = function () {
 	var self = this;
 	var presets = [];
 
-	for (var master = 1; master < 20; master++) {
+	for (var master = 1; master <= 20; master++) {
 		for (var key in self.CHOICES_MASTERKEY) {
 			presets.push({
 				category: 'Master ' + master,
-				label: self.CHOICES_MASTERKEY[key].label + 'Master 1',
+				label: self.CHOICES_MASTERKEY[key].label + ' Master 1',
 				bank: {
 					style: 'text',
-					text: self.CHOICES_MASTERKEY[key].label + 'Master 1',
-					size: '18'
+					text: self.CHOICES_MASTERKEY[key].label + ' Master 1',
+					size: '18',
+					color: self.rgb(255,255,255),
+					bgcolor: self.rgb(0,0,0)
 				},
 				actions: [
 					{
@@ -155,7 +157,9 @@ instance.prototype.init_presets = function () {
 			bank: {
 				style: 'text',
 				text: 'Master 1 @ 0%',
-				size: '18'
+				size: '18',
+				color: self.rgb(255,255,255),
+				bgcolor: self.rgb(0,0,0)
 			},
 			actions: [
 				{
@@ -173,7 +177,9 @@ instance.prototype.init_presets = function () {
 			bank: {
 				style: 'text',
 				text: 'Master 1 @ 50%',
-				size: '18'
+				size: '18',
+				color: self.rgb(255,255,255),
+				bgcolor: self.rgb(0,0,0)
 			},
 			actions: [
 				{
@@ -191,7 +197,9 @@ instance.prototype.init_presets = function () {
 			bank: {
 				style: 'text',
 				text: 'Master 1 @ 100%',
-				size: '18'
+				size: '18',
+				color: self.rgb(255,255,255),
+				bgcolor: self.rgb(0,0,0)
 			},
 			actions: [
 				{
@@ -212,7 +220,9 @@ instance.prototype.init_presets = function () {
 			bank: {
 				style: 'text',
 				text: self.CHOICES_HARDWAREKEY[key].label,
-				size: '18'
+				size: '18',
+				color: self.rgb(255,255,255),
+				bgcolor: self.rgb(0,0,0)
 			},
 			actions: [
 				{
@@ -235,14 +245,16 @@ instance.prototype.init_presets = function () {
 		});
 	}
 
-	for (var hKey = 1; hKey < 20; hKey++) {
+	for (var hKey = 1; hKey <= 20; hKey++) {
 		presets.push({
 			category: 'H Keys',
 			label: 'H Key ' + hKey,
 			bank: {
 				style: 'text',
 				text: 'H Key ' + hKey,
-				size: '18'
+				size: '18',
+				color: self.rgb(255,255,255),
+				bgcolor: self.rgb(0,0,0)
 			},
 			actions: [
 				{
@@ -405,7 +417,7 @@ instance.prototype.actions = function(system) {
 		},
 
 		'masterKey':     {
-			label:     'Master Key Press',
+			label:     'Master Key',
 			options: [
 				{
 					type:    'textinput',
@@ -452,7 +464,7 @@ instance.prototype.actions = function(system) {
 		},
 
 		'hardwareKey':     {
-			label:     'Hardware Key Press',
+			label:     'Hardware Key',
 			options: [
 				{
 					type:    'dropdown',
@@ -472,7 +484,7 @@ instance.prototype.actions = function(system) {
 		},
 
 		'hKey':     {
-			label:     'H Key Press',
+			label:     'H Key',
 			options: [
 				{
 					type:    'textinput',
