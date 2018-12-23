@@ -120,10 +120,10 @@ instance.prototype.init_presets = function () {
 		for (var key in self.CHOICES_MASTERKEY) {
 			presets.push({
 				category: 'Master ' + master,
-				label: self.CHOICES_MASTERKEY[key].label + ' Master 1',
+				label: self.CHOICES_MASTERKEY[key].label + ' Master ' + master,
 				bank: {
 					style: 'text',
-					text: self.CHOICES_MASTERKEY[key].label + ' Master 1',
+					text: self.CHOICES_MASTERKEY[key].label + ' Master ' + master,
 					size: '18',
 					color: self.rgb(255,255,255),
 					bgcolor: self.rgb(0,0,0)
@@ -258,7 +258,7 @@ instance.prototype.init_presets = function () {
 			},
 			actions: [
 				{
-					action: 'hardwareKey',
+					action: 'hKey',
 					options: {
 						hId: hKey,
 						action: '1'
@@ -267,7 +267,7 @@ instance.prototype.init_presets = function () {
 			],
 			release_actions: [
 				{
-					action: 'hardwareKey',
+					action: 'hKey',
 					options: {
 						hId: hKey,
 						action: '0'
