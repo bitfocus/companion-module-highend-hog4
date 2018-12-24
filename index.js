@@ -252,7 +252,7 @@ instance.prototype.init_presets = function () {
 			},
 			actions: [
 				{
-					action: 'midi',
+					action: 'midiNote',
 					options: {
 						action: 'on',
 						cId: '1',
@@ -263,7 +263,7 @@ instance.prototype.init_presets = function () {
 			],
 			release_actions: [
 				{
-					action: 'midi',
+					action: 'midiNote',
 					options: {
 						action: 'on',
 						cId: '1',
@@ -603,20 +603,6 @@ instance.prototype.actions = function(system) {
 		'masterFader':     {
 			label:     'Master Fader Level',
 			options: [
-				{
-					type: 'text',
-					id: 'info',
-					width: 12,
-					label: 'Information',
-					value: 'Fader commands are not functional when using Hog4 PC'
-				},
-				{
-					type: 'text',
-					id: 'info',
-					width: 12,
-					label: 'Information',
-					value: 'This is a hardware mapping.  0 = GM for desks with a physical GM fader, otherwise the GM is mapped to its associated master.'
-				},
 				{
 					type:    'textinput',
 					label:   'Master Number (0 = GM, 1-90)',
