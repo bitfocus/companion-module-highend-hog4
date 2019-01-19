@@ -1,6 +1,6 @@
-## Highend Hog4 Module
+## High End Hog4 Module
 
-The Highend Hog4 Module for Companion is an OSC control implementation.  If you are familiar with enabling TouchOSC control, the procedure is very similar for enabling Companion to talk to Hog4.
+The High End Hog4 Module for Companion is an OSC control implementation.  If you are familiar with enabling TouchOSC control, the procedure is very similar for enabling Companion to talk to Hog4.
 
 The current implentation does not accept OSC return (fader and LED status), however this will be added in the future.
 
