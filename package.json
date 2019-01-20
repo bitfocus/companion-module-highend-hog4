@@ -1,11 +1,13 @@
 {
 	"name": "highend-hog4",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"api_version": "1.0.1",
-	"keywords": [ "Lighting" ],
+	"keywords": [
+		"Lighting"
+	],
 	"manufacturer": "High End Systems",
 	"product": "Hog 4",
-	"shortname": "hog",
+	"shortname": "hog4",
 	"description": "Module to control High End Systems Hog 4 Consoles",
 	"main": "index.js",
 	"scripts": {
