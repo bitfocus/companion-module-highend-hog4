@@ -256,7 +256,7 @@ class instance extends instance_skel {
 
 		if (cmd != undefined) {
 			debug(cmd,arg);
-			this.system.emit('osc_send', this.config.host, this.config.port, cmd, [arg]);
+			this.oscSend(this.config.host, this.config.port, cmd, [arg]);
 		}
 	}
 
