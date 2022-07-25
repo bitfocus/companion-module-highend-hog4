@@ -18,7 +18,7 @@ module.exports = {
 					id:      'qlId',
 					default:  1,
 					min:      1,
-					max:      1000,
+					max:      32768,
 					required: true,
 					range:    false
 				},
