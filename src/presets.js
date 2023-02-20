@@ -21,25 +21,28 @@ export function updatePresets() {
 				color: combineRgb(255, 255, 255),
 				bgcolor: combineRgb(0, 0, 0),
 			},
-			steps: [{
-			down: [
+			steps: [
 				{
-					actionId: 'hardwareKey',
-					options: {
-						type: Choices.HardwareKey[key].id,
-						actionId: '1',
-					},
+					down: [
+						{
+							actionId: 'hardwareKey',
+							options: {
+								type: Choices.HardwareKey[key].id,
+								actionId: '1',
+							},
+						},
+					],
+					up: [
+						{
+							actionId: 'hardwareKey',
+							options: {
+								type: Choices.HardwareKey[key].id,
+								actionId: '0',
+							},
+						},
+					],
 				},
 			],
-			up: [
-				{
-					actionId: 'hardwareKey',
-					options: {
-						type: Choices.HardwareKey[key].id,
-						actionId: '0',
-					},
-				},
-			],}]
 		})
 	}
 
