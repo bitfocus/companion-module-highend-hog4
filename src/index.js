@@ -106,7 +106,7 @@ class HighendHog4Instance extends InstanceBase {
 	 */
 	sendCommand(cmd, arg) {
 		if (cmd && this.config.host !== undefined && this.config.port !== undefined) {
-			this.log('debug', `Sending command: ${cmd}`)
+			this.log('debug', `Sending command: ${cmd} ${arg?.value}`)
 			this.oscSend(this.config.host, this.config.port, cmd, [arg])
 		} else {
 			this.log('debug', `Host, port, or command not defined: ${cmd}`)

@@ -8,13 +8,13 @@ import { Choices, Presets } from './setup.js'
  * @since 1.0.0
  */
 export function updatePresets() {
-	var presets = []
+	let presets = {}
 
-	for (var key in Choices.HardwareKey) {
-		presets.push({
+	for (let key in Choices.HardwareKey) {
+		presets[`hardware-key-${Choices.HardwareKey[key].id}`] = {
 			type: 'button',
 			category: 'Hardware Keys',
-			label: Choices.HardwareKey[key].label,
+			name: Choices.HardwareKey[key].label,
 			style: {
 				text: Choices.HardwareKey[key].label,
 				size: '18',
@@ -28,7 +28,7 @@ export function updatePresets() {
 							actionId: 'hardwareKey',
 							options: {
 								type: Choices.HardwareKey[key].id,
-								actionId: '1',
+								action: '1',
 							},
 						},
 					],
@@ -37,20 +37,21 @@ export function updatePresets() {
 							actionId: 'hardwareKey',
 							options: {
 								type: Choices.HardwareKey[key].id,
-								actionId: '0',
+								action: '0',
 							},
 						},
 					],
 				},
 			],
-		})
+			feedbacks: [],
+		}
 	}
 
-	for (var hKey = 1; hKey <= 20; hKey++) {
-		presets.push({
+	for (let hKey = 1; hKey <= 20; hKey++) {
+		presets[`hkey-${hKey}`] = {
 			type: 'button',
 			category: 'H Keys',
-			label: 'H Key ' + hKey,
+			name: 'H Key ' + hKey,
 			style: {
 				text: 'H Key ' + hKey,
 				size: '18',
@@ -64,7 +65,7 @@ export function updatePresets() {
 							actionId: 'hKey',
 							options: {
 								hId: hKey,
-								actionId: '1',
+								action: '1',
 							},
 						},
 					],
@@ -73,20 +74,21 @@ export function updatePresets() {
 							actionId: 'hKey',
 							options: {
 								hId: hKey,
-								actionId: '0',
+								action: '0',
 							},
 						},
 					],
 				},
 			],
-		})
+			feedbacks: [],
+		}
 	}
 
-	for (var midi = 1; midi <= 100; midi++) {
-		presets.push({
+	for (let midi = 1; midi <= 100; midi++) {
+		presets[`midi-note-${midi}`] = {
 			type: 'button',
 			category: 'MIDI Notes',
-			label: 'MIDI ' + midi,
+			name: 'MIDI ' + midi,
 			style: {
 				text: 'MIDI ' + midi,
 				size: '18',
@@ -119,14 +121,15 @@ export function updatePresets() {
 					],
 				},
 			],
-		})
+			feedbacks: [],
+		}
 	}
 
-	for (var level in Presets.FaderLevel) {
-		presets.push({
+	for (let level in Presets.FaderLevel) {
+		presets[`gm-level-${Presets.FaderLevel[level].id}`] = {
 			type: 'button',
 			category: 'Grand Master',
-			label: 'GM @ ' + Presets.FaderLevel[level].label,
+			name: 'GM @ ' + Presets.FaderLevel[level].label,
 			style: {
 				text: 'GM @ ' + Presets.FaderLevel[level].label,
 				size: '18',
@@ -147,15 +150,16 @@ export function updatePresets() {
 					up: [],
 				},
 			],
-		})
+			feedbacks: [],
+		}
 	}
 
-	for (var master = 1; master <= 20; master++) {
-		for (var key in Choices.MasterKey) {
-			presets.push({
+	for (let master = 1; master <= 20; master++) {
+		for (let key in Choices.MasterKey) {
+			presets[`master-${master}-key-${Choices.MasterKey[key].id}`] = {
 				type: 'button',
 				category: 'Master ' + master,
-				label: Choices.MasterKey[key].label + ' Master ' + master,
+				name: Choices.MasterKey[key].label + ' Master ' + master,
 				style: {
 					text: Choices.MasterKey[key].label + ' Master ' + master,
 					size: '14',
@@ -170,7 +174,7 @@ export function updatePresets() {
 								options: {
 									type: Choices.MasterKey[key].id,
 									mId: master,
-									actionId: '1',
+									action: '1',
 								},
 							},
 						],
@@ -180,20 +184,21 @@ export function updatePresets() {
 								options: {
 									type: Choices.MasterKey[key].id,
 									mId: master,
-									actionId: '0',
+									action: '0',
 								},
 							},
 						],
 					},
 				],
-			})
+				feedbacks: [],
+			}
 		}
 
-		for (var level in Presets.FaderLevel) {
-			presets.push({
+		for (let level in Presets.FaderLevel) {
+			presets[`master-fader-${Presets.FaderLevel[level].id}`] = {
 				type: 'button',
 				category: 'Master ' + master,
-				label: 'Master ' + master + ' @ ' + Presets.FaderLevel[level].label,
+				name: 'Master ' + master + ' @ ' + Presets.FaderLevel[level].label,
 				style: {
 					text: 'Master ' + master + ' @ ' + Presets.FaderLevel[level].label,
 					size: '14',
@@ -214,17 +219,18 @@ export function updatePresets() {
 						up: [],
 					},
 				],
-			})
+				feedbacks: [],
+			}
 		}
 	}
 
-	for (var type in Choices.PlaybackType) {
-		for (var seq = 1; seq <= 10; seq++) {
-			for (var action in Presets.Actions) {
-				presets.push({
+	for (let type in Choices.PlaybackType) {
+		for (let seq = 1; seq <= 10; seq++) {
+			for (let action in Presets.Actions) {
+				presets[`${Choices.PlaybackType[type].label}-${seq}-${Presets.Actions[action].id}`] = {
 					type: 'button',
 					category: Choices.PlaybackType[type].label + ' ' + seq,
-					label: Presets.Actions[action].label + ' ' + Choices.PlaybackType[type].label + ' ' + seq,
+					name: Presets.Actions[action].label + ' ' + Choices.PlaybackType[type].label + ' ' + seq,
 					style: {
 						style: 'text',
 						text: Presets.Actions[action].label + ' ' + Choices.PlaybackType[type].label + ' ' + seq,
@@ -240,7 +246,7 @@ export function updatePresets() {
 									options: {
 										type: Choices.PlaybackType[type].id,
 										num: seq,
-										actionId: '1',
+										action: '1',
 									},
 								},
 							],
@@ -250,21 +256,22 @@ export function updatePresets() {
 									options: {
 										type: Choices.PlaybackType[type].id,
 										num: seq,
-										actionId: '0',
+										action: '0',
 									},
 								},
 							],
 						},
 					],
-				})
+					feedbacks: [],
+				}
 			}
 
 			if (Choices.PlaybackType[type].id === '0') {
-				for (var cId = 1; cId <= 5; cId++) {
-					presets.push({
+				for (let cId = 1; cId <= 5; cId++) {
+					presets[`${Choices.PlaybackType[type].label}-${seq}-go-${cId}`] = {
 						type: 'button',
 						category: Choices.PlaybackType[type].label + ' ' + seq,
-						label: 'Go on Cue ' + seq + '.' + cId,
+						name: 'Go on Cue ' + seq + '.' + cId,
 						style: {
 							style: 'text',
 							text: 'Go on Cue ' + seq + '.' + cId,
@@ -280,7 +287,7 @@ export function updatePresets() {
 										options: {
 											qlId: seq,
 											qId: cId,
-											actionId: '1',
+											action: '1',
 										},
 									},
 								],
@@ -290,13 +297,14 @@ export function updatePresets() {
 										options: {
 											qlId: seq,
 											qId: cId,
-											actionId: '0',
+											action: '0',
 										},
 									},
 								],
 							},
 						],
-					})
+						feedbacks: [],
+					}
 				}
 			}
 		}
