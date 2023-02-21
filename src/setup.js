@@ -87,7 +87,6 @@ export const Choices = {
 		{ id: '1', label: 'Scene' },
 		{ id: '2', label: 'Macro' },
 	],
-
 	UpDown: [
 		{ id: '1', label: 'Press' },
 		{ id: '0', label: 'Release' },
@@ -108,7 +107,7 @@ export const Fields = {
 		id: 'qId',
 		default: 1,
 		min: 1,
-		max: 1000,
+		max: 32768,
 		required: true,
 		range: false,
 	},
@@ -118,7 +117,7 @@ export const Fields = {
 		id: 'qlId',
 		default: 1,
 		min: 1,
-		max: 1000,
+		max: 32768,
 		required: true,
 		range: false,
 	},
