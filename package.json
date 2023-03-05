@@ -1,26 +1,23 @@
 {
 	"name": "highend-hog4",
-	"version": "1.1.2",
-	"api_version": "1.0.0",
-	"keywords": [
-		"Lighting"
-	],
-	"manufacturer": "High End Systems",
-	"product": "Hog 4",
-	"shortname": "hog4",
-	"description": "Module to control High End Systems Hog 4 Consoles",
-	"homepage": "https://github.com/bitfocus/companion-module-highend-hog4#readme",
-	"main": "index.js",
+	"version": "2.0.0",
+	"main": "src/index.js",
+	"type": "module",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"format": "prettier --write ."
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/bitfocus/companion-module-highend-hog4.git"
 	},
-	"author": "Keith Rocheck <keith.rocheck@gmail.com>",
 	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/bitfocus/companion-module-highend-hog4/issues"
-	}
+	"dependencies": {
+		"@companion-module/base": "~1.2"
+	},
+	"devDependencies": {
+		"@companion-module/tools": "~1.1",
+		"prettier": "^2.8.3"
+	},
+	"prettier": "@companion-module/tools/.prettierrc.json"
 }
