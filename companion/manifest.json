@@ -3,7 +3,7 @@
 	"name": "highend-hog4",
 	"shortname": "hog4",
 	"description": "Module to control High End Systems Hog 4 Consoles",
-	"version": "2.0.0",
+	"version": "0.0.0",
 	"license": "MIT",
 	"repository": "git+https://github.com/bitfocus/companion-module-highend-hog4.git",
 	"bugs": "https://github.com/bitfocus/companion-module-highend-hog4/issues",
@@ -18,7 +18,7 @@
 		"type": "node18",
 		"api": "nodejs-ipc",
 		"apiVersion": "0.0.0",
-		"entrypoint": "..\\src\\index.js"
+		"entrypoint": "../src/index.js"
 	},
 	"manufacturer": "High End Systems",
 	"products": ["Hog 4"],
