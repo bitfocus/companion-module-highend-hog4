@@ -4,8 +4,9 @@
 	"main": "src/index.js",
 	"type": "module",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"format": "prettier --write ."
+		"test": "node --test test/*.test.js",
+		"format": "prettier --write .",
+		"build": "node --check src/index.js && node --check src/actions.js && node --check src/setup.js && node --check src/presets.js"
 	},
 	"repository": {
 		"type": "git",
@@ -13,11 +14,14 @@
 	},
 	"license": "MIT",
 	"dependencies": {
-		"@companion-module/base": "~1.10"
+		"@companion-module/base": "~1.15.0"
 	},
 	"devDependencies": {
-		"@companion-module/tools": "~2.0",
+		"@companion-module/tools": "^2.9.0",
 		"prettier": "^3.0.0"
 	},
-	"prettier": "@companion-module/tools/.prettierrc.json"
+	"prettier": "@companion-module/tools/.prettierrc.json",
+	"engines": {
+		"node": "^26.5"
+	}
 }
